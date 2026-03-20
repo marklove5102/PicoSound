@@ -11,10 +11,7 @@ This architecture eliminates audio dropouts caused by blocking operations like
 SPI transfers, flash writes, or heavy computations. Audio continues uninterrupted 
 regardless of what Core0 is doing.
 
-Supports both synthesized sounds (waveforms, melodies, effects) and streaming 
-from WAV files. Not limited to games, but suitable for any project requiring reliable 
-audio output: synthesizers, musical instruments, notification systems, interactive 
-installations, or educational tools.
+Supports both synthesized sounds (waveforms, melodies, effects) and streaming from WAV files. This is suitable for any project requiring reliable audio output: synthesizers, musical instruments, notification systems, interactive installations, games or educational tools.
 
 ## Features
 
