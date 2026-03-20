@@ -26,7 +26,7 @@ Supports both synthesized sounds (waveforms, melodies, effects) and streaming fr
 ## Architecture
 
 ```
-Core0: Game logic          Core1: Audio engine
+Core0: Program logic      Core1: Audio engine
   ↓                           ↓
 SendAudioCommand() ----→ PicoSound.loop()
   (via PicoSem)              (mixer + output)
