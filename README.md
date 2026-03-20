@@ -1,10 +1,9 @@
 # PicoSound
 
-![RP2040](https://img.shields.io/badge/RP2040-Raspberry%20Pi%20Pico-C51A4A?logo=raspberrypi)
-![Arduino](https://img.shields.io/badge/Arduino-Compatible-00979D?logo=arduino)
-![PlatformIO](https://img.shields.io/badge/PlatformIO-Compatible-orange?logo=platformio)
-![License](https://img.shields.io/badge/License-GPL--3.0-blue)
-![Version](https://img.shields.io/badge/Version-1.0.0-green)
+[![RP2040](https://img.shields.io/badge/RP2040-Raspberry%20Pi%20Pico-C51A4A?logo=raspberrypi)](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html)
+[![Arduino](https://img.shields.io/badge/Arduino-Compatible-00979D?logo=arduino)](https://arduino-pico.readthedocs.io/)
+[![PlatformIO](https://img.shields.io/badge/PlatformIO-Compatible-orange?logo=platformio)](https://registry.platformio.org/platforms/platformio/raspberrypi)
+[![License](https://img.shields.io/badge/License-GPL--3.0-blue)](LICENSE)
 
 Dual-core audio engine for Raspberry Pi Pico (RP2040).
 
