@@ -1,10 +1,5 @@
 # PicoSound
 
-
-[![RP2040](https://img.shields.io/badge/Platform-RP2040-green.svg)](https://www.raspberrypi.com/products/raspberry-pi-pico/)
-[![Arduino Library](https://img.shields.io/badge/Arduino-Library-blue.svg)](https://www.arduino.cc/reference/en/libraries/)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-
 ![RP2040](https://img.shields.io/badge/RP2040-Raspberry%20Pi%20Pico-C51A4A?logo=raspberrypi)
 ![Arduino](https://img.shields.io/badge/Arduino-Compatible-00979D?logo=arduino)
 ![PlatformIO](https://img.shields.io/badge/PlatformIO-Compatible-orange?logo=platformio)
