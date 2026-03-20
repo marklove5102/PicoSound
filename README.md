@@ -5,6 +5,12 @@
 [![Arduino Library](https://img.shields.io/badge/Arduino-Library-blue.svg)](https://www.arduino.cc/reference/en/libraries/)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
+![RP2040](https://img.shields.io/badge/RP2040-Raspberry%20Pi%20Pico-C51A4A?logo=raspberrypi)
+![Arduino](https://img.shields.io/badge/Arduino-Compatible-00979D?logo=arduino)
+![PlatformIO](https://img.shields.io/badge/PlatformIO-Compatible-orange?logo=platformio)
+![License](https://img.shields.io/badge/License-GPL--3.0-blue)
+![Version](https://img.shields.io/badge/Version-1.0.0-green)
+
 Dual-core audio engine for Raspberry Pi Pico (RP2040).
 
 PicoSound delivers glitch-free audio for any RP2040 application by dedicating 
