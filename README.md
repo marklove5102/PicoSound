@@ -120,7 +120,7 @@ See [Hardware Guide](docs/HARDWARE.md) for schematics.
 
 - Raspberry Pi Pico (RP2040)
 - Arduino-Pico core (Earle Philhower)
-- [PicoSem library](https://github.com/example/PicoSem)
+- [PicoSem library](https://github.com/IWILZ/PicoSem)
 
 ## License
 
