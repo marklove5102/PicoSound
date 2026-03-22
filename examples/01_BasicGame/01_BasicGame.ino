@@ -25,7 +25,6 @@ typedef enum {
   SND_BEEP,
   SND_LASER,
   SND_EXPLOSION,
-  SND_MELODY,
   SND_MAX
 } SoundID;
 
@@ -58,28 +57,37 @@ const SoundDefinition PICOSOUND_TABLE[] = {
   
   // SND_EXPLOSION - Realistic explosion
   {WAVE_EXPLOSION, 0, 0, 1800, 16000, 90, nullptr, 0, false, nullptr, false},
-  
-  // SND_MELODY - Play melody
-  {WAVE_NONE, 0, 0, 0, 0, 70, nullptr, 0, false, nullptr, false},
 };
 
 //=============================================================================
 // MAIN PROGRAM
 //=============================================================================
-
 // Button pins
 #define BTN_BEEP      18
 #define BTN_EXPLOSION 19
 #define BTN_MELODY    20
 
+// Enable next define if you are using an I2S module 
+// (like a MAX98357A) controlled by a GPIO pin
+#define I2S_DS_PIN    0   // GPIO pin to mute/unmute MAX98357A
+
 void setup() {
+  delay(500);
   Serial.begin(115200);
-  
+  delay(2000);
+
   // Setup buttons
   pinMode(BTN_BEEP, INPUT_PULLUP);
   pinMode(BTN_EXPLOSION, INPUT_PULLUP);
   pinMode(BTN_MELODY, INPUT_PULLUP);
   
+  if (USER_SND_OUT==OUT_I2S){
+    #ifdef I2S_DS_PIN
+    pinMode(I2S_DS_PIN, OUTPUT);      // MAX98357A DS control pin
+    digitalWrite(I2S_DS_PIN, HIGH);   // enable MAX98357A
+    #endif
+  }
+
   Serial.println("PicoSound Basic Example");
   Serial.println("Press buttons to play sounds");
 }
@@ -107,7 +115,6 @@ void loop() {
 //=============================================================================
 // CORE1: Audio engine
 //=============================================================================
-
 void setup1() {
   PicoSound_AudioCore_Setup1();
 }
