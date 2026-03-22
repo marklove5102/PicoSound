@@ -273,66 +273,66 @@ typedef struct {
 
 #ifndef PLATFORMIO_STYLE
 
-// Hardware configuration (set in sketch if needed)
-#ifndef USER_SND_OUT
-  #define USER_SND_OUT    OUT_I2S
-  #define USER_PIN_BCK    14
-  #define USER_PIN_WS     15
-  #define USER_PIN_DATA   16
-  #define USER_PIN_SPKR   17
-#endif
+    // Hardware configuration (set in sketch if needed)
+    #ifndef USER_SND_OUT
+      #define USER_SND_OUT    OUT_I2S
+      #define USER_PIN_BCK    14
+      #define USER_PIN_WS     15
+      #define USER_PIN_DATA   16
+      #define USER_PIN_SPKR   17
+    #endif
 
-// Mixer settings (set in sketch if needed)
-#ifndef PICOSOUND_USER_NUM_CHANNELS
-  #define PICOSOUND_USER_NUM_CHANNELS    4
-#endif
+    // Mixer settings (set in sketch if needed)
+    #ifndef PICOSOUND_USER_NUM_CHANNELS
+      #define PICOSOUND_USER_NUM_CHANNELS    4
+    #endif
 
-#ifndef PICOSOUND_USER_MASTER_VOLUME
-  #define PICOSOUND_USER_MASTER_VOLUME   80
-#endif
+    #ifndef PICOSOUND_USER_MASTER_VOLUME
+      #define PICOSOUND_USER_MASTER_VOLUME   80
+    #endif
 
-// Loudness compensation (override in sketch if needed)
-#ifndef PICOSOUND_LOUDNESS_FACTOR
-  inline const float PICOSOUND_LOUDNESS_FACTOR[] = {
-    1.0f,   // WAVE_NONE
-    2.0f,   // WAVE_SINE
-    0.9f,   // WAVE_SQUARE
-    1.5f,   // WAVE_SAWTOOTH
-    1.5f,   // WAVE_TRIANGLE
-    0.7f,   // WAVE_NOISE
-    1.0f,   // WAVE_WAV
-    1.0f    // WAVE_EXPLOSION
-  };
-#endif
+    // Loudness compensation (override in sketch if needed)
+    #ifndef PICOSOUND_LOUDNESS_FACTOR
+      inline const float PICOSOUND_LOUDNESS_FACTOR[] = {
+        1.0f,   // WAVE_NONE
+        2.0f,   // WAVE_SINE
+        0.9f,   // WAVE_SQUARE
+        1.5f,   // WAVE_SAWTOOTH
+        1.5f,   // WAVE_TRIANGLE
+        0.7f,   // WAVE_NOISE
+        1.0f,   // WAVE_WAV
+        1.0f    // WAVE_EXPLOSION
+      };
+    #endif
 
-//=============================================================================
-// SOUND IDs
-// User must define SoundID enum in picosound_user_cfg.h
-//=============================================================================
-// Example in picosound_user_cfg.h:
-//   typedef enum {
-//     SND_NONE = 0,
-//     SND_BEEP,
-//     SND_LASER,
-//     SND_MAX      // <- Always add SND_MAX as last entry
-//   } SoundID;
+    //=============================================================================
+    // SOUND IDs
+    // User must define SoundID enum in picosound_user_cfg.h
+    //=============================================================================
+    // Example in picosound_user_cfg.h:
+    //   typedef enum {
+    //     SND_NONE = 0,
+    //     SND_BEEP,
+    //     SND_LASER,
+    //     SND_MAX      // <- Always add SND_MAX as last entry
+    //   } SoundID;
 
-// Ensure SND_NONE is always defined (fallback)
-#ifndef SND_NONE
-  #define SND_NONE 0
-#endif
+    // Ensure SND_NONE is always defined (fallback)
+    #ifndef SND_NONE
+      #define SND_NONE 0
+    #endif
 
-// Ensure SND_MAX is defined (fallback to large value)
-#ifndef SND_MAX
-  #define SND_MAX 255
-//  #warning "SND_MAX not defined in picosound_user_cfg.h. Using default 255."
-#endif
+    // Ensure SND_MAX is defined (fallback to large value)
+    #ifndef SND_MAX
+      #define SND_MAX 255
+    //  #warning "SND_MAX not defined in picosound_user_cfg.h. Using default 255."
+    #endif
 
-// Sound table must be defined by user in sketch
-// See examples for reference
-extern const SoundDefinition PICOSOUND_TABLE[];
+    // Sound table must be defined by user in sketch
+    // See examples for reference
+    extern const SoundDefinition PICOSOUND_TABLE[];
 
-#endif
+#endif    //  PLATFORMIO_STYLE
 
 //=============================================================================
 // GLOBAL SHARED MEMORY (Core0 ← Core1)
