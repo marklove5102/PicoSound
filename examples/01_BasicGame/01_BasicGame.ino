@@ -60,7 +60,7 @@ const SoundDefinition PICOSOUND_TABLE[] = {
   {WAVE_EXPLOSION, 0, 0, 1800, 16000, 90, nullptr, 0, false, nullptr, false},
   
   // SND_MELODY - Play melody
-  {WAVE_MELODY, 0, 0, 0, 0, 70, nullptr, 0, false, (const char*)powerup, false},
+  {WAVE_NONE, 0, 0, 0, 0, 70, nullptr, 0, false, nullptr, false},
 };
 
 //=============================================================================
@@ -99,7 +99,7 @@ void loop() {
   
   // Melody
   if (digitalRead(BTN_MELODY) == LOW) {
-    SendAudioCommand(CMD_PLAY_SOUND, SND_MELODY, 70);
+    PlayMelody(powerup, 4, WAVE_TRIANGLE, 70);
     delay(200);
   }
 }
