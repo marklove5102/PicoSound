@@ -36,6 +36,11 @@
 #include <I2S.h>
 #include <LittleFS.h>
 
+// ----------------------------------------------------------------------------
+// If you are using PlatformIO UNCOMMENT the following line
+// #define PLATFORMIO_STYLE
+// ----------------------------------------------------------------------------
+
 //=============================================================================
 //=============================================================================
 // picosound_user_cfg.h is included after struct and variables definition
@@ -252,13 +257,21 @@ typedef struct {
   uint8_t explosion_repeat_count;
 } AudioChannel_Internal;
 
+//=============================================================================
+// picosound_user_cfg.h must be included after struct and variables definition
+//=============================================================================
+#if defined(__has_include)
+ #if __has_include("picosound_user_cfg.h")
+   #include "picosound_user_cfg.h"
+ #else
+   #error "PicoSound: Copy templates/picosound_user_cfg_template.h to src/picosound_user_cfg.h or include/picosound_user_cfg.h"
+ #endif
+#else
+ #include "picosound_user_cfg.h"
+#endif
+//=============================================================================
 
-//=============================================================================
-// USER CONFIGURATION
-// 
-// Arduino IDE: Define these BEFORE including PicoSound headers in your .ino
-// PlatformIO: Use separate picosound_user_cfg.h file (see platformio-style branch)
-//=============================================================================
+#ifndef PLATFORMIO_STYLE
 
 // Hardware configuration (set in sketch if needed)
 #ifndef USER_SND_OUT
@@ -282,10 +295,10 @@ typedef struct {
 #ifndef PICOSOUND_LOUDNESS_FACTOR
   inline const float PICOSOUND_LOUDNESS_FACTOR[] = {
     1.0f,   // WAVE_NONE
-    3.0f,   // WAVE_SINE
+    2.0f,   // WAVE_SINE
     0.9f,   // WAVE_SQUARE
-    2.0f,   // WAVE_SAWTOOTH
-    2.0f,   // WAVE_TRIANGLE
+    1.5f,   // WAVE_SAWTOOTH
+    1.5f,   // WAVE_TRIANGLE
     0.7f,   // WAVE_NOISE
     1.0f,   // WAVE_WAV
     1.0f    // WAVE_EXPLOSION
@@ -294,9 +307,9 @@ typedef struct {
 
 //=============================================================================
 // SOUND IDs
-// User must define SoundID enum in sketch before including PicoSound
+// User must define SoundID enum in picosound_user_cfg.h
 //=============================================================================
-// Example in your .ino:
+// Example in picosound_user_cfg.h:
 //   typedef enum {
 //     SND_NONE = 0,
 //     SND_BEEP,
@@ -312,13 +325,14 @@ typedef struct {
 // Ensure SND_MAX is defined (fallback to large value)
 #ifndef SND_MAX
   #define SND_MAX 255
-  #warning "SND_MAX not defined by user. Using default value 255."
+//  #warning "SND_MAX not defined in picosound_user_cfg.h. Using default 255."
 #endif
 
 // Sound table must be defined by user in sketch
 // See examples for reference
 extern const SoundDefinition PICOSOUND_TABLE[];
 
+#endif
 
 //=============================================================================
 // GLOBAL SHARED MEMORY (Core0 ← Core1)
