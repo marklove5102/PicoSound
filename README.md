@@ -183,13 +183,13 @@ See [docs/HARDWARE.md](docs/HARDWARE.md) for detailed schematics.
 
 ## Examples
 
-- [01_BasicGame](examples/01_BasicGame/) - Simple button-triggered sounds
+- [01_BasicExample](examples/01_BasicExample/) - Simple button-triggered sounds
 
 ## Requirements
 
 - Raspberry Pi Pico (RP2040)
 - Arduino-Pico core (Earle Philhower)
-- [PicoSem library](https://github.com/example/PicoSem)
+- [PicoSem library](https://github.com/IWILZ/PicoSem)
 
 ## License
 
