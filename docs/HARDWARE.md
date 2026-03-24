@@ -60,17 +60,13 @@ In `picosound_user_cfg.h`:
 
 ## PWM Output (Speaker/Amplifier)
 
-Simple option for prototyping.
+While a simple prototype can be made using a resistor connected between the Pico's PWM pin and the "+" terminal of a small speaker with the "-" terminal connected to ground, a slightly better solution, both for sound quality and the integrity of the Pico itself, is to use a small NPN transistor. 
 
-### Wiring (Passive Speaker)
+This not only manages the current consumption better without excessively overloading the Pico, but also preserves its integrity by isolating it from the inductive load.
 
-```
-Pico GP17 ───┬─── 100µF ───┬─── Speaker (+)
-             │    (polarized)  │
-             └─── 1kΩ ─────────┴─── Speaker (-)
-                               │
-                              GND
-```
+### Wiring (NPN transistor + Passive Speaker)
+
+![PWM output with a NPN transistor](https://github.com/IWILZ/PicoSound/blob/main/docs/images/PWM_output.jpg)
 
 **Note:** Low volume. Use amplifier for better results.
 
