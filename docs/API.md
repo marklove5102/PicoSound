@@ -202,14 +202,14 @@ inline const SoundDefinition PICOSOUND_TABLE[] = {
 ```
 
 **Parameters:**
-1. Waveform type
+1. Waveform type 
 2. Start frequency (Hz, 0 for WAV)
 3. End frequency (Hz, for sweeps)
 4. Duration (ms, 0 for WAV)
-5. Amplitude
-6. Default volume (0-100)
-7. WAV data pointer (or nullptr)
-8. WAV data length (or 0)
-9. Loop flag
+5. Amplitude (max absolute value for a synthesized waveform: 32767)
+6. Default volume (0-100 percentage)
+7. WAV data pointer (or nullptr for synthesized waveforms)
+8. WAV data length (or 0 for synthesized waveforms)
+9. Loop flag for WAV and melody sounds
 10. Filesystem path (or nullptr)
 11. Use filesystem flag
