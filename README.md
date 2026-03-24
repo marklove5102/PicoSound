@@ -46,10 +46,10 @@ development environments.
 ## Architecture
 
 ```
-Core0: Game logic          Core1: Audio engine
-  ↓                           ↓
+Core0: Game logic       Core1: Audio engine
+       ↓                        ↓
 SendAudioCommand() ----→ PicoSound.loop()
-  (via PicoSem)              (mixer + output)
+  (via PicoSem)          (mixer + output)
 ```
 
 Audio runs independently. No blocking, no glitches.
