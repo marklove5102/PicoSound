@@ -1,0 +1,36 @@
+{
+  "name": "PicoSound",
+  "version": "1.0.2",
+  "description": "Dual-core audio engine for Raspberry Pi Pico (RP2040). Multi-channel mixer with I2S/PWM output, synthesized sounds, melody sequencer, and WAV streaming.",
+  "keywords": [
+    "rp2040",
+    "pico",
+    "audio",
+    "dual-core",
+    "i2s",
+    "pwm",
+    "sound",
+    "music",
+    "synthesizer",
+    "wav",
+    "game-audio",
+    "mixer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IWILZ/PicoSound.git"
+  },
+  "authors": [
+    {
+      "name": "IWILZ",
+      "maintainer": true
+    }
+  ],
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/IWILZ/PicoSound",
+  "dependencies": {
+    "PicoSem": "^1.0.1"
+  },
+  "frameworks": ["arduino"],
+  "platforms": ["raspberrypi"]
+}
