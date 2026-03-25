@@ -113,9 +113,9 @@ The program lists all files found on LittleFS.
 
 // Play WAV from LittleFS (looping)
 {WAVE_WAV, 0, 0, 0, 0, 70, nullptr, 0, true, "/sound3.wav", true}
-                                              ↑
-                                              |
-                                           Loop = true
+                                         ↑
+                                         |
+                                    Loop = true
 ```
 
 ### Parameters
