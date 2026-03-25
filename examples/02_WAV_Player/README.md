@@ -40,7 +40,9 @@ Create a `data/` folder in your sketch directory:
 
 ### 2. Upload Filesystem
 
-To upload data/ folder to the Pico filesystem, use **Pico LittleFS Data Upload** or press CTRL-SHIFT-P and select **Upload LittleFS to Pico/ESP8266/ESP32**
+Under **Tools/Board** menu, select Raspberry Pi Pico and then using **Flash size** reserve 1MB of Flash for LittleFS filesystem
+
+Now to upload your sounds, use **Pico LittleFS Data Upload** or press CTRL-SHIFT-P and select **Upload LittleFS to Pico/ESP8266/ESP32**
 
 ### 3. Upload Sketch
 
