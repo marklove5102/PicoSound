@@ -2,7 +2,7 @@
 
 ## I2S Output (MAX98357A)
 
-Recommended for best audio quality.
+An I2S audio module is recommended for best audio quality and here is described the MAX98357A but you can use also other similar modules.
 
 ### Wiring
 
@@ -27,6 +27,10 @@ The SD pin controls shutdown and mono/stereo mode:
 
 **For mono (recommended):**
 ```
+
+![Controlling SD pin](./images/SD_control.jpg)
+
+
         3k3
 3.3V ───┬─── GP14 ───┬─── SD (MAX98357A)
         │             │
