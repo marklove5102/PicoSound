@@ -257,6 +257,8 @@ typedef struct {
   uint8_t explosion_repeat_count;
 } AudioChannel_Internal;
 
+#ifdef PLATFORMIO_STYLE
+
 //=============================================================================
 // picosound_user_cfg.h must be included after struct and variables definition
 //=============================================================================
@@ -270,6 +272,8 @@ typedef struct {
  #include "picosound_user_cfg.h"
 #endif
 //=============================================================================
+
+#endif
 
 #ifndef PLATFORMIO_STYLE
 
