@@ -186,6 +186,7 @@ See [docs/HARDWARE.md](docs/HARDWARE.md) for detailed schematics.
 ## Examples
 
 - [01_BasicExample](examples/01_BasicExample/) - Simple button-triggered sounds
+- [02_WAV_Player](/examples/02_WAV_Player/) - How to use WAV files on LittleFS
 
 ## Requirements
 
