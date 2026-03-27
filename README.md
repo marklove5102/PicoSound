@@ -18,8 +18,8 @@ This architecture eliminates audio dropouts caused by blocking operations like
 SPI transfers, flash writes, or heavy computations. Audio continues uninterrupted 
 regardless of what Core0 is doing.
 
-Supports both synthesized sounds (waveforms, melodies, effects) and streaming 
-from WAV files. Suitable for any project requiring reliable 
+Supports both **synthesized sounds** (waveforms, melodies, effects) and streaming 
+from **WAV files**. Suitable for any project requiring reliable 
 audio output: synthesizers, musical instruments, notification systems, interactive 
 installations, games or educational tools.
 
@@ -33,7 +33,7 @@ Simple examples are provided and depending on the development environment (**Ard
 
 ```
  * Arduino IDE ----→ into your *.ino file
- * PlatformIO  ----→ inside a dedicated *.cfg file   
+ * PlatformIO  ----→ inside a dedicated config.h file   
 ```
 
 ## Features
@@ -47,7 +47,7 @@ Simple examples are provided and depending on the development environment (**Ard
 - Frequency sweeps
 - Arduino IDE and PlatformIO compatible
 
-## Architecture
+## Software Architecture
 
 ```
 Core0: Program logic     Core1: Audio engine
@@ -91,19 +91,24 @@ const SoundDefinition PICOSOUND_TABLE[] = {
   {WAVE_SQUARE, 1500, 200, 200, 12000, 70, nullptr, 0, false, nullptr, false},
 };
 
-// ========== PROGRAM ==========
+// ============ YOUR PROGRAM ON CORE0 =============
 void setup() {
   // Your setup here
 }
-
 void loop() {
+  // ...
+  // Your computing logic, graphics, I/O, etc
+  // ...  
+
   SendAudioCommand(CMD_PLAY_SOUND, SND_BEEP, 80);
-  delay(1000);
+  delay(1000);    // Your program can be "blocking"
 }
 
+// ========== AUDIO ENGINE RUNS ON CORE1 ==========
 void setup1() {
   PicoSound_AudioCore_Setup1();
 }
+// ======= NON-BLOCKING LOOP TO PLAY AUDIO ========
 void loop1() {
   PicoSound_AudioCore_Loop1();
 }  
@@ -115,19 +120,28 @@ See [examples](examples/) for complete code.
 
 ### 1. Install Library
 
-If you already have a `platformio.ini` just add:
+If you already have a `platformio.ini` into your project, just add:
 
 ```ini
 lib_deps = 
     https://github.com/IWILZ/PicoSound.git
     https://github.com/IWILZ/PicoSem.git
 
-build_flags = 
-    -D PLATFORMIO
+; Memory config to reserve space for WAVs on LittleFS
+board_build.filesystem_size = 1m
+board_build.filesystem = littlefs
 ```
-otherwise see the README in the `example/` folder.
+otherwise for a full example, see the README in the `example/` folder.
 
-### 2. Copy Configuration Template
+### 2. Configuration Templates
+
+The library provides three **templates** to help you better organize your work by dividing (where appropriate) the definition of your sounds into:
+
+- picosound_user_cfg_template.h --> synthesized sounds and LittleFS files
+- picosound_melodies_template.h --> melody definitions
+- picosound_samples_template.h --> WAV samples stored in PROGMEM
+
+You can simply use `picosound_user_cfg_template.h` to create the **mandatory** `picosound_user_cfg.h` file, including the other 2 inside it when the number of your sounds increases and you want a better organization for your work.
 
 ```bash
 cp lib/PicoSound/src/templates/picosound_user_cfg_template.h include/picosound_user_cfg.h
@@ -164,32 +178,38 @@ inline const SoundDefinition PICOSOUND_TABLE[] = {
 ```
 
 
-### 4. Write Code
+### 4. Write Your Code
 
 ```cpp
 #include <Arduino.h>
 #include <PicoSound_AudioCore.h>
 #include <PicoSound_DualCore.h>
 
+// ============ YOUR PROGRAM ON CORE0 =============
 void setup() {
-  // Your setup
+  // Your setup here
 }
-
 void loop() {
+  // ...
+  // Your computing logic, graphics, I/O, etc
+  // ...  
+
   SendAudioCommand(CMD_PLAY_SOUND, SND_BEEP, 80);
-  delay(1000);
+  delay(1000);    // Your program can be "blocking"
 }
 
+// ========== AUDIO ENGINE RUNS ON CORE1 ==========
 void setup1() {
   PicoSound_AudioCore_Setup1();
 }
-
+// ======= NON-BLOCKING LOOP TO PLAY AUDIO ========
 void loop1() {
   PicoSound_AudioCore_Loop1();
 }
+
 ```
 
-Configuration is loaded automatically from `include/picosound_user_cfg.h`.
+Configuration is loaded automatically from your `include/picosound_user_cfg.h`.
 
 ### 5. Build and Upload
 
