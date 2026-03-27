@@ -36,11 +36,6 @@
 #include <I2S.h>
 #include <LittleFS.h>
 
-// ----------------------------------------------------------------------------
-// If you are using PlatformIO UNCOMMENT the following line
-// #define PLATFORMIO_STYLE
-// ----------------------------------------------------------------------------
-
 //=============================================================================
 //=============================================================================
 // picosound_user_cfg.h is included after struct and variables definition
@@ -257,7 +252,11 @@ typedef struct {
   uint8_t explosion_repeat_count;
 } AudioChannel_Internal;
 
-#ifdef PLATFORMIO_STYLE
+
+// ==================================================================
+// PLATFORMIO is automatically defined if we are using PlatformIO IDE
+// ==================================================================
+#ifdef PLATFORMIO
 
 //=============================================================================
 // picosound_user_cfg.h must be included after struct and variables definition
@@ -271,11 +270,12 @@ typedef struct {
 #else
  #include "picosound_user_cfg.h"
 #endif
-//=============================================================================
 
-#endif
+#endif // PLATFORMIO
 
-#ifndef PLATFORMIO_STYLE
+// ==================================================================
+
+#ifndef PLATFORMIO
 
     // Hardware configuration (set in sketch if needed)
     #ifndef USER_SND_OUT
@@ -336,7 +336,8 @@ typedef struct {
     // See examples for reference
     extern const SoundDefinition PICOSOUND_TABLE[];
 
-#endif    //  PLATFORMIO_STYLE
+#endif    //  PLATFORMIO
+// ==================================================================
 
 //=============================================================================
 // GLOBAL SHARED MEMORY (Core0 ← Core1)

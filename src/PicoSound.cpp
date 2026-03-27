@@ -8,20 +8,6 @@
  */
   
 #include <Arduino.h>
-
-/* ------------------------- Not for Arduino-style library ---------------------
-#if defined(__has_include)
-  #if __has_include("picosound_user_cfg.h")
-    #include "picosound_user_cfg.h"
-  #else
-    #error "PicoSound: picosound_user_cfg.h not found! Copy the template in your project."
-  #endif
-#else
-  // Fallback for compilers without __has_include support
-  #include "picosound_user_cfg.h"
-#endif
------------------------------------------------------------------------------- */
-
 #include "PicoSound.h"
 
 //=============================================================================

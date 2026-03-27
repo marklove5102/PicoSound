@@ -2,9 +2,8 @@
 
 ![PicoSound Audio Library](https://raw.githubusercontent.com/IWILZ/PicoSound/main/docs/images/PicoSound_banner.jpg)
 
-![Branch](https://img.shields.io/badge/Branch-Arduino%20Style-green)
 [![RP2040](https://img.shields.io/badge/RP2040-Raspberry%20Pi%20Pico-C51A4A?logo=raspberrypi)](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html)
-[![Arduino](https://img.shields.io/badge/Arduino-Compatible-00979D?logo=arduino)](https://arduino-pico.readthedocs.io/)
+[![Arduino](https://img.shields.io/badge/Arduino.IDE-Compatible-00979D?logo=arduino)](https://arduino-pico.readthedocs.io/)
 [![PlatformIO](https://img.shields.io/badge/PlatformIO-Compatible-orange?logo=platformio)](https://registry.platformio.org/platforms/platformio/raspberrypi)
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue)](LICENSE)
 
@@ -20,9 +19,9 @@ SPI transfers, flash writes, or heavy computations. Audio continues uninterrupte
 regardless of what Core0 is doing.
 
 Supports both synthesized sounds (waveforms, melodies, effects) and streaming 
-from WAV files. Not limited to games—suitable for any project requiring reliable 
+from WAV files. Suitable for any project requiring reliable 
 audio output: synthesizers, musical instruments, notification systems, interactive 
-installations, or educational tools.
+installations, games or educational tools.
 
 Works seamlessly with both Arduino IDE and PlatformIO. The library uses 
 standard C++ structure (.h/.cpp files) ensuring compatibility across 
@@ -30,9 +29,11 @@ development environments.
 
 ## Configuration Approach
 
-> **This branch uses inline configuration** - sounds are defined directly in your sketch (.ino file).
-> 
-> For PlatformIO users preferring separate config files, see the [platformio-style branch](../../tree/platformio-style).
+```
+ Simple examples are provided and depending on the development environment (Arduino IDE or PlatformIO), they differ only in the place you can configure your sounds:
+ * Arduino IDE ----→ into your *.ino file
+ * PlatformIO  ----→ inside a dedicated *.cfg file   
+```
 
 ## Features
 
@@ -56,7 +57,7 @@ SendAudioCommand() ----→ PicoSound.loop()
 
 Audio runs independently. No blocking, no glitches.
 
-## Quick Start (Arduino IDE)
+## Arduino IDE - quick start
 
 ### 1. Install
 
@@ -109,9 +110,86 @@ void loop1() {
 
 See [examples](examples/) for complete code.
 
-## Quick Start (PlatformIO)
+## PlatformIO - quick start
 
-This branch works also with PlatformIO but for cleaner code organization with separate config files, use the [platformio-style branch](../../tree/platformio-style).
+### 1. Install Library
+
+Add to `platformio.ini`:
+
+```ini
+lib_deps = 
+    https://github.com/IWILZ/PicoSound.git
+```
+
+### 2. Copy Configuration Template
+
+```bash
+cp lib/PicoSound/src/templates/picosound_user_cfg_template.h include/picosound_user_cfg.h
+```
+
+Or manually copy from `lib/PicoSound/src/templates/` to your project's `include/` folder.
+
+### 3. Customize Configuration
+
+Edit `include/picosound_user_cfg.h`:
+
+```cpp
+// Set your hardware pins
+#define USER_SND_OUT    OUT_I2S
+#define USER_PIN_BCK    14
+#define USER_PIN_WS     15
+#define USER_PIN_DATA   16
+
+// Define your sounds
+typedef enum {
+  SND_NONE = 0,
+  SND_BEEP,
+  SND_LASER,
+  SND_EXPLOSION,
+  SND_MAX    // Always end with SND_MAX
+} SoundID;
+
+// Add sounds to table
+inline const SoundDefinition PICOSOUND_TABLE[] = {
+  {WAVE_NONE, 0, 0, 0, 0, 100, nullptr, 0, false, nullptr, false},
+  {WAVE_SQUARE, 440, 0, 100, 12000, 80, nullptr, 0, false, nullptr, false},
+  // ... your sounds ...
+};
+```
+
+
+### 4. Write Code
+
+```cpp
+#include <Arduino.h>
+#include <PicoSound_AudioCore.h>
+#include <PicoSound_DualCore.h>
+
+void setup() {
+  // Your setup
+}
+
+void loop() {
+  SendAudioCommand(CMD_PLAY_SOUND, SND_BEEP, 80);
+  delay(1000);
+}
+
+void setup1() {
+  PicoSound_AudioCore_Setup1();
+}
+
+void loop1() {
+  PicoSound_AudioCore_Loop1();
+}
+```
+
+Configuration is loaded automatically from `include/picosound_user_cfg.h`.
+
+### 5. Build and Upload
+
+```bash
+pio run --target upload
+```
 
 ## API
 
@@ -143,16 +221,16 @@ Pico GP17 → Speaker (+) via capacitor
 GND → Speaker (-)
 ```
 
-See [docs/HARDWARE.md](docs/HARDWARE.md) for detailed schematics.
+See [docs/HARDWARE.md](docs/HARDWARE.md) for detailed description.
 
 ## Configuration Styles Comparison
 
 | Approach | Best For | Config Location |
 |----------|----------|-----------------|
-| **Inline** (this branch) | Arduino IDE | In `.ino` file |
-| **Separate files** ([other branch](../../tree/platformio-style)) | PlatformIO | `include/picosound_user_cfg.h` |
+| **Inline** | Arduino IDE | In `.ino` file |
+| **Separate files** | PlatformIO | `include/picosound_user_cfg.h` |
 
-### Inline Configuration (This Branch)
+### Inline Configuration
 
 **Advantages:**
 - ✅ Works perfectly in Arduino IDE
@@ -164,7 +242,7 @@ See [docs/HARDWARE.md](docs/HARDWARE.md) for detailed schematics.
 - ⚠️ Large sound tables in main file
 - ⚠️ Less modular for complex projects
 
-### Separate Config Files ([PlatformIO Branch](../../tree/platformio-style))
+### Separate Config Files
 
 **Advantages:**
 - ✅ Cleaner code organization
@@ -175,24 +253,18 @@ See [docs/HARDWARE.md](docs/HARDWARE.md) for detailed schematics.
 - ❌ Arduino IDE doesn't support this well
 - ⚠️ PlatformIO/VSCode only
 
-## Which Branch Should I Use?
-
-| Your Environment | Recommended Branch |
-|-----------------|-------------------|
-| Arduino IDE | **main** (this branch) |
-| PlatformIO | [platformio-style](../../tree/platformio-style) |
-| VSCode | [platformio-style](../../tree/platformio-style) |
 
 ## Examples
 
-- [01_BasicExample](examples/01_BasicExample/) - Simple button-triggered sounds
-- [02_WAV_Player](/examples/02_WAV_Player/) - How to use WAV files on LittleFS
+See `example/` folder for both type of development environments.
 
 ## Requirements
 
 - Raspberry Pi Pico (RP2040)
 - Arduino-Pico core (Earle Philhower)
 - [PicoSem library](https://github.com/IWILZ/PicoSem)
+
+Special thanks to **Earle Philhower** for his great work!
 
 ## License
 
