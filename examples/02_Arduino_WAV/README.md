@@ -52,42 +52,6 @@ Upload the sketch normally.
 
 Press buttons to play sounds!
 
-## Setup (PlatformIO)
-
-### 1. Prepare WAV Files
-
-Place WAV files in `data/` folder:
-```
-02_WAV_Player_PIO/
-├── platformio.ini
-├── include/
-├── src/
-└── data/
-    ├── sound1.wav
-    ├── sound2.wav
-    └── sound3.wav
-```
-
-### 2. Upload Filesystem
-
-```bash
-pio run --target uploadfs
-```
-
-### 3. Upload Program
-
-```bash
-pio run --target upload
-```
-
-### 4. Monitor Serial
-
-```bash
-pio device monitor
-```
-
-The program lists all files found on LittleFS.
-
 ## Hardware Setup
 
 ### Buttons
