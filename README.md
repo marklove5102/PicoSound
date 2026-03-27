@@ -115,12 +115,17 @@ See [examples](examples/) for complete code.
 
 ### 1. Install Library
 
-Add to `platformio.ini`:
+If you already have a `platformio.ini` just add:
 
 ```ini
 lib_deps = 
     https://github.com/IWILZ/PicoSound.git
+    https://github.com/IWILZ/PicoSem.git
+
+build_flags = 
+    -D PLATFORMIO
 ```
+otherwise see the README in the `example/` folder.
 
 ### 2. Copy Configuration Template
 
