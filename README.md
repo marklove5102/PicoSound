@@ -79,7 +79,7 @@ If you need **more space for WAV sounds**, you can consider a `Pi Pico with 16MB
 
 To experiment different sample frequency:
 
-```C
+```
 Arduino IDE:  edit PicoSound.h and change the value of PICOSOUND_DEFAULT_SAMPLE_RATE  
 
 PlatformIO:   in your platformio.ini add -D PICOSOUND_DEFAULT_SAMPLE_RATE="your rate"
