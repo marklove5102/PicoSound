@@ -47,6 +47,7 @@ Simple examples are provided and depending on the development environment (**Ard
 - Frequency sweeps
 - Arduino IDE and PlatformIO compatible
 
+
 ## Software Architecture
 
 ```
@@ -57,6 +58,34 @@ SendAudioCommand() ----→ PicoSound.loop()
 ```
 
 Audio runs independently. No blocking, no glitches.
+
+
+## Overall resource consumption
+
+| Resource | Used | Pi Pico | % |
+|-------|-------|---------|---|
+| RAM | 4KB | 264KB | 1.5% |  
+| Flash | 20KB | 2MB | 1% |
+| DMA channels | 1 | 12 | 8% |
+| Cores | 1 | 2 | 50% |
+
+
+- Audio latency: ~35µs  
+- WAV files: ~32 seconds/MB (e.g. 4 sounds of ~4" and 8 of ~2", for each MB)
+
+Above values ​​refer to a standard configuration: 16Khz - 16 bit/sample - Mono - 8 Channel Mixer  
+
+If you need **more space for WAV sounds**, you can consider a `Pi Pico with 16MB Flash` avaliable on Amazon or AliExpress
+
+To experiment different sample frequency:
+
+```C
+Arduino IDE:  edit PicoSound.h and change the value of PICOSOUND_DEFAULT_SAMPLE_RATE  
+
+PlatformIO:   in your platformio.ini add -D PICOSOUND_DEFAULT_SAMPLE_RATE="your rate"
+```
+
+--------------
 
 ## Arduino IDE - quick start
 
@@ -115,6 +144,8 @@ void loop1() {
 ```
 
 See [examples](examples/) for complete code.
+
+-------------------
 
 ## PlatformIO - quick start
 
@@ -216,6 +247,8 @@ Configuration is loaded automatically from your `include/picosound_user_cfg.h`.
 ```bash
 pio run --target upload
 ```
+
+------------------------------
 
 ## API
 
