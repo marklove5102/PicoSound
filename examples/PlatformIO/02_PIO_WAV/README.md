@@ -193,9 +193,10 @@ board_build.filesystem_size = 1m  ; 1 MB for files
 ```
 
 With 1MB:
-- ~60 seconds of audio at 16kHz/16-bit/Mono
-- Adjust size if you need more storage
-- If you are planning to play a lot of sound, please consider a `Pi Pico with 16MB of Flash Memory`
+- ~32 seconds of audio at 16kHz/16-bit/Mono
+- Increase size of your LittleFS partition if you need more storage 
+- Consider a `Pi Pico with 16MB Flash` from Amazon or AliExpress
+
 
 ## Next Steps
 
