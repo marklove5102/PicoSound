@@ -75,7 +75,7 @@ Audio runs independently. No blocking, no glitches.
 
 Above values ​​refer to a standard configuration: 16Khz - 16 bit/sample - Mono - 8 Channel Mixer  
 
-If you need **more space for WAV sounds**, you can consider a `Pi Pico with 16MB Flash` avaliable on Amazon or AliExpress
+If you need **more space for WAV sounds**, use a `Pi Pico with 16MB Flash` avaliable on Amazon or AliExpress
 
 To experiment different sample frequency:
 
