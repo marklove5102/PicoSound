@@ -8,7 +8,7 @@
  * 
  * Features:
  * - Multi-channel mixer (configurable 1-8 channels)
- * - Dual-core architecture (Core0=Game, Core1=Audio)
+ * - Dual-core architecture (Core0=User program, Core1=Audio)
  * - WAV streaming from LittleFS (unlimited size)
  * - Synthesized sounds (sine, square, sawtooth, triangle, noise)
  * - Custom explosion generator
