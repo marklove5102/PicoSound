@@ -1,6 +1,6 @@
 # Project Structure
 
-## Arduino IDE Style (Branch: `main`)
+## Arduino IDE Style
 
 Configuration is defined inline in your sketch file:
 
@@ -12,7 +12,7 @@ MyProject/
 │   ├── #include <PicoSound_DualCore.h>
 │   └── setup(), loop(), setup1(), loop1()
 │
-└── (optional) Additional .h/.cpp files
+└── Additional .h/.cpp files
 
 Arduino/libraries/
 └── PicoSound/
@@ -65,7 +65,7 @@ Arduino/libraries/
 
 ---
 
-## PlatformIO Style (Branch: `platformio-style`)
+## PlatformIO Style
 
 Configuration in separate files for cleaner organization:
 
@@ -138,11 +138,4 @@ MyProject/
 | **Code clarity** | ⚠️ Large file | ✅ Clean separation |
 | **Portability** | Arduino IDE only | PlatformIO/VSCode |
 
----
 
-## Which to Use?
-
-- **Arduino IDE** → Use `main` branch (inline config)
-- **PlatformIO/VSCode** → Use `platformio-style` branch (separate files)
-
-Both approaches keep your configuration safe during library updates.
